@@ -1,0 +1,36 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-5">
+			<% if(flash && flash.err){ %>
+			<div class="alert alert-danger">
+				<%= flash.err.invalidAttributes.name[0].message%>
+			</div>
+			<% } %>
+			<h3> <%= checklist.name %> </h3>
+			<form class="form-inline" method="POST" action="/checklist/item/<%=checklist.id%>">
+			  <div class="form-group">
+			      <input type="text" class="form-control" name="name" placeholder="Enter item name">
+			  </div>
+			  <button type="submit" class="btn btn-primary">Add</button>
+			  <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+			</form>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12">
+		<% _.each(checklist.items, function(item){%>
+			<div class="alert alert-info" role="alert">
+				<div class="row">
+					<div class="col-xs-5">
+						<strong><%= item %></strong>
+					</div>
+					<div class="col-xs-7">
+						<a href="/checklist/removeItem/<%=checklist.id%>/<%=item%>" class="btn btn-danger pull-right">Delete</a>
+					</div>
+				</div>
+			</div>
+		<% });%>
+		</div>
+	</div>
+</div>

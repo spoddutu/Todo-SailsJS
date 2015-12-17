@@ -1,0 +1,36 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-offset-3 col-xs-6">
+			<h2>Signup</h2>
+			<form name="signupForm" role="form" class="well" method="POST" action="/user/create">
+				<div class="form-group">
+					<label for="name">Display Name</label>
+					<input type="test" class="form-control" name="name"/>
+				</div>
+				<div class="form-group">
+					<label for="email">Email</label>
+					<% if(flash && flash.err){
+					   Object.keys(flash.err).forEach(function(error){
+					%>
+					<div class="alert alert-danger">
+						<%= flash.err[error] %>
+					</div>
+					<% })} %>
+					<input type="email" class="form-control" name="email"/>
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input type="password" class="form-control" name="password"/>
+				</div>
+				<div class="form-group">
+					<label for="confirm-password">Confirm</label>
+					<input type="password" class="form-control" name="confirmation"/>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Register</button>
+					<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
